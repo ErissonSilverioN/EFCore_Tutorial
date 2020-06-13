@@ -14,14 +14,14 @@ namespace EFCoreTutorials
 
             using (var context = new Contexto())
             {
-                var std = new Student()
+                var insertar = new Student()
                 {
                     FirstName = "Erisson",
                     LastName = "Silverio",
 
                 };
 
-                context.students.Add(std);
+                context.students.Add(insertar);
                 context.SaveChanges();
 
             }
@@ -30,8 +30,8 @@ namespace EFCoreTutorials
                                                     //---Ejemplo Actualizar Datos
             using (var context = new Contexto())
             {
-                var std = context.students.First<Student>();
-                std.FirstName = "Silverio";
+                var actualizar = context.students.First<Student>();
+                actualizar.FirstName = "Silverio";
                 context.SaveChanges();
             }
 
@@ -40,8 +40,8 @@ namespace EFCoreTutorials
                                                     //-----Ejemplo Eliminar Datos
             using (var context = new Contexto())
             {
-                var std = context.students.First<Student>();
-                context.students.Remove(std);
+                var eliminar = context.students.First<Student>();
+                context.students.Remove(eliminar);
 
                
 
@@ -50,12 +50,32 @@ namespace EFCoreTutorials
 
 
 
-            //---Ejemplo Consultando Datos
+                                                  //---Ejemplo Consultando Datos
 
-            var context_S = new Contexto();
-            var studentsWithSameName = context_S.students
+            var context_C = new Contexto();
+            var studentsWithSameName = context_C.students
                                               .Where(s => s.FirstName == GetName())
                                               .ToList();
+
+
+
+
+
+
+
+                                                   //---- Guardando datos en escenario desconectado
+
+            var guardar = new Student() { FirstName = "Guilen" };
+
+            using (var context = new Contexto())
+            {
+                context.Add<Student>(guardar);
+                context.SaveChanges();
+            }
+
+
+
+
         }
 
         public static string GetName()
