@@ -10,23 +10,24 @@ namespace EFCoreTutorials
     {
         static void Main(string[] args)
         {
-                                                  //---Ejemplo Isertar Datos
+                                                     //---Ejemplo Isertar Datos
 
-            //using (var context = new Contexto())   
-            //{
-            //    var std = new Student()
-            //    {
-            //        FirstName = "Erisson",
-            //        LastName = "Silverio",
+            using (var context = new Contexto())
+            {
+                var std = new Student()
+                {
+                    FirstName = "Erisson",
+                    LastName = "Silverio",
 
-            //    };
+                };
 
-            //    context.students.Add(std);
-            //    context.SaveChanges();
+                context.students.Add(std);
+                context.SaveChanges();
 
-            //}
+            }
 
 
+                                                    //---Ejemplo Actualizar Datos
             using (var context = new Contexto())
             {
                 var std = context.students.First<Student>();
@@ -35,6 +36,17 @@ namespace EFCoreTutorials
             }
 
 
+
+                                                    //-----Ejemplo Eliminar Datos
+            using (var context = new Contexto())
+            {
+                var std = context.students.First<Student>();
+                context.students.Remove(std);
+
+               
+
+                context.SaveChanges();
+            }
 
 
 
