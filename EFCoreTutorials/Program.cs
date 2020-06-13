@@ -173,6 +173,19 @@ namespace EFCoreTutorials
 
 
 
+                              //-----Eliminar datos en un escenario desconectado 
+            var student = new Student()
+            {
+                StudentId = 1
+            };
+
+            using (var context = new Contexto())
+            {
+                context.Remove<Student>(student);
+
+                 context.SaveChanges();
+            }
+
 
 
         }
