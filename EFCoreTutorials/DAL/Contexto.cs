@@ -17,5 +17,20 @@ namespace EFCoreTutorials.DAL
             optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS; Database=TutorialEFCoreDB; Trusted_Connection=True;");
             base.OnConfiguring(optionsBuilder);
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Student>()
+                .Property(s => s.StudentId)
+                .HasColumnName("Id")
+                .HasDefaultValue(0)
+                .IsRequired();
+
+            modelBuilder.Entity<Student>().Property(s => s.StudentId).HasColumnName("Id");
+            modelBuilder.Entity<Student>().Property(s => s.StudentId).HasDefaultValue(0);
+            modelBuilder.Entity<Student>().Property(s => s.StudentId).IsRequired();
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
