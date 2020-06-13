@@ -188,6 +188,25 @@ namespace EFCoreTutorials
 
 
 
+
+                                                       //------Eliminar múltiples registros
+            IList<Student> students = new List<Student>() {
+               new Student(){ StudentId = 1 },
+               new Student(){ StudentId = 2 },
+               new Student(){ StudentId = 3 },
+               
+             };
+
+            using (var context = new Contexto())
+            {
+                context.RemoveRange(students);
+
+                context.SaveChanges();
+            }
+
+
+
+
         }
 
         public static string GetName()
