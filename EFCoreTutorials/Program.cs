@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EFCoreTutorials.DAL;
 using EFCoreTutorials.Models;
@@ -116,6 +117,61 @@ namespace EFCoreTutorials
                 context.students.Add(insertar_dbset);
                 context.SaveChanges();
             }
+
+
+                                                  //-----Actualizando datos en un escenario desconectado
+
+            var stud = new Student() { StudentId = 1, FirstName = "Guilen" };
+
+            stud.FirstName = "Steve";
+
+            using (var context = new Contexto())
+            {
+                context.Update<Student>(stud);
+
+               
+                context.SaveChanges();
+            }
+
+
+                                                        //------Actualizar múltiples entidades
+
+            var modifiedStudent1 = new Student()
+            {
+                StudentId = 1,
+                FirstName = "Bill"
+            };
+
+            var modifiedStudent2 = new Student()
+            {
+                StudentId = 3,
+                FirstName = "Steve"
+            };
+
+            var modifiedStudent3 = new Student()
+            {
+                StudentId = 3,
+                FirstName = "James"
+            };
+
+            IList<Student> modifiedStudents = new List<Student>()
+            {
+                modifiedStudent1,
+                modifiedStudent2,
+                modifiedStudent3
+            };
+
+            using (var context = new Contexto())
+            {
+                context.UpdateRange(modifiedStudents);
+
+      
+                context.SaveChanges();
+            }
+
+
+
+
 
 
 
