@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreTutorials.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20200612235415_TutorialCore")]
-    partial class TutorialCore
+    [Migration("20200613154208_MigrandoDatos")]
+    partial class MigrandoDatos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,8 +42,15 @@ namespace EFCoreTutorials.Migrations
                 {
                     b.Property<int>("StudentId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasDefaultValue(0);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Course")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");

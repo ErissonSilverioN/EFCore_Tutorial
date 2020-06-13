@@ -14,7 +14,7 @@ namespace EFCoreTutorials.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS; Database=TutorialEFCoreDB; Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS; Database=Tutorial_EFCoreDB; Trusted_Connection=True;");
             base.OnConfiguring(optionsBuilder);
         }
 

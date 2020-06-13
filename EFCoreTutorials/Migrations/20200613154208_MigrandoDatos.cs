@@ -2,7 +2,7 @@
 
 namespace EFCoreTutorials.Migrations
 {
-    public partial class TutorialCore : Migration
+    public partial class MigrandoDatos : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,14 +24,15 @@ namespace EFCoreTutorials.Migrations
                 name: "students",
                 columns: table => new
                 {
-                    StudentId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(nullable: false, defaultValue: 0),
                     FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true)
+                    LastName = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    Course = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_students", x => x.StudentId);
+                    table.PrimaryKey("PK_students", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(

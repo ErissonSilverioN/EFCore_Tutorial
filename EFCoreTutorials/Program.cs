@@ -76,6 +76,49 @@ namespace EFCoreTutorials
 
 
 
+            //------Insertar datos relacionales
+
+
+
+            var stdAddress= new Address()
+            {
+                City = "SFO",
+                State = "CA",
+                Country = "USA"
+
+            };
+
+            var std = new Student()
+            {
+                FirstName = "Julio",
+                Address = Convert.ToString(stdAddress),
+
+            };
+
+
+            using (var contex = new Contexto())
+            {
+                contex.Add<Student>(std);
+                contex.SaveChanges();
+            }
+
+
+
+                                           //-----Insertar datos  yusando DbSet
+
+            var insertar_dbset = new  Student()
+            {
+                FirstName = "Bill"
+            };
+
+            using (var context = new Contexto())
+            {
+                context.students.Add(insertar_dbset);
+                context.SaveChanges();
+            }
+
+
+
         }
 
         public static string GetName()
