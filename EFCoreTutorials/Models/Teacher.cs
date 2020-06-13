@@ -5,11 +5,12 @@ using System.Text;
 
 namespace EFCoreTutorials.Models
 {
-    public class Student
+    public class Teacher
     {
         [Key]
-        public int StudentId { get; set; }
+        public int TeacherId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Telephone { get; set; }
     }
 }

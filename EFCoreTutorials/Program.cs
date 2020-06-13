@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Linq;
+using EFCoreTutorials.DAL;
+using EFCoreTutorials.Models;
+
 
 namespace EFCoreTutorials
 {
@@ -6,7 +10,49 @@ namespace EFCoreTutorials
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+                                                  //---Ejemplo Isertar Datos
+
+            //using (var context = new Contexto())   
+            //{
+            //    var std = new Student()
+            //    {
+            //        FirstName = "Erisson",
+            //        LastName = "Silverio",
+
+            //    };
+
+            //    context.students.Add(std);
+            //    context.SaveChanges();
+
+            //}
+
+
+            using (var context = new Contexto())
+            {
+                var std = context.students.First<Student>();
+                std.FirstName = "Silverio";
+                context.SaveChanges();
+            }
+
+
+
+
+
+            //---Ejemplo Consultando Datos
+
+            var context_S = new Contexto();
+            var studentsWithSameName = context_S.students
+                                              .Where(s => s.FirstName == GetName())
+                                              .ToList();
         }
+
+        public static string GetName()
+        {
+            return "Erisson";
+          
+        }
+
+        
+
     }
 }

@@ -2,7 +2,7 @@
 
 namespace EFCoreTutorials.Migrations
 {
-    public partial class Initial : Migration
+    public partial class TutorialCore : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,8 @@ namespace EFCoreTutorials.Migrations
                 {
                     CourseId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CourseName = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    Schedule = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -25,11 +26,27 @@ namespace EFCoreTutorials.Migrations
                 {
                     StudentId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true)
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_students", x => x.StudentId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "teachers",
+                columns: table => new
+                {
+                    TeacherId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Telephone = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_teachers", x => x.TeacherId);
                 });
         }
 
@@ -40,6 +57,9 @@ namespace EFCoreTutorials.Migrations
 
             migrationBuilder.DropTable(
                 name: "students");
+
+            migrationBuilder.DropTable(
+                name: "teachers");
         }
     }
 }

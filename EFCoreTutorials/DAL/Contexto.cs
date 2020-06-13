@@ -10,10 +10,11 @@ namespace EFCoreTutorials.DAL
     {
         public DbSet<Student> students { get; set; }
         public DbSet<Course> courses { get; set; }
+        public DbSet<Teacher> teachers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=SchoolDb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS; Database=TutorialEFCoreDB; Trusted_Connection=True;");
             base.OnConfiguring(optionsBuilder);
         }
     }
